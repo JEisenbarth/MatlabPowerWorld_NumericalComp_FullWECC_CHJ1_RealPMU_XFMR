@@ -1,0 +1,57 @@
+SCRIPT
+{
+OpenCase("CHJ1_PlayIn_RealPMU.PWB",PWB);
+EnterMode(EDIT);
+}
+
+DATA (Branch, [BusNum,BusName,BusNum:1,BusName:1,LineCircuit,LineR,LineX])
+{
+44162 "CHJ PH1" 44155 "CHJ TX1" 1 1e-05 0.00023
+}
+
+DATA (Branch, [BusNum,BusName,BusNum:1,BusName:1,LineCircuit,LineR,LineX,Status])
+{
+44155 "CHJ TX1" 44141 "CHJ 0102" 1 0.000869 0.059651 Closed
+}
+
+DATA (Branch, [BusNum,BusName,BusNum:1,BusName:1,LineCircuit,LineR,LineX,Status])
+{
+44155 "CHJ TX1" 44142 "CHJ 0304" 1 0.000951 0.060355 Closed
+}
+
+DATA (GEN, [BusNum,BusName,GenID,VoltSet])
+{
+44162 "CHJ PH1" 1 1.0468736294
+}
+
+DATA (Bus, [BusNum,BusName,BusPUVolt,BusAngle])
+{
+44162 "CHJ PH1" 1.0468736294 0
+}
+
+DATA (GEN, [BusNum,BusName,GenID,VoltSet,GenMW,GenStatus])
+{
+44141 "CHJ 0102" 01 0.996875902179 68.1070385081 Closed
+}
+
+DATA (GEN, [BusNum,BusName,GenID,VoltSet,GenMW,GenStatus])
+{
+44141 "CHJ 0102" 02 0.996875902179 68.1070385081 Open
+}
+
+DATA (GEN, [BusNum,BusName,GenID,VoltSet,GenMW,GenStatus])
+{
+44142 "CHJ 0304" 03 0.99688259632 68.1109064656 Closed
+}
+
+DATA (GEN, [BusNum,BusName,GenID,VoltSet,GenMW,GenStatus])
+{
+44142 "CHJ 0304" 04 0.99688259632 68.1109064656 Open
+}
+
+SCRIPT
+{
+EnterMode(RUN);
+SolvePowerFlow (RECTNEWT,"","");
+}
+
